@@ -31,4 +31,17 @@ public class Account {
     public boolean isOverdrawn() {
         return balance < 0;
     }
+
+    //penambahan tugas mandiri
+    public void transferTo(Account target, double amount) {
+        double balanceBefore = this.balance;
+        this.withdraw(amount);
+        
+        //hanya menyetorkan ke target jika penarikan saldo pengirim berhasil
+        if (this.balance < balanceBefore) {
+            target.deposit(amount);
+        } else {
+            System.out.println("Transfer failed: transaction cancelled.");
+        }
+    }
 }
