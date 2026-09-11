@@ -1,47 +1,44 @@
 package id.ac.polinema;
 public class Account {
-    public String ownerName;
-    public double balance;
+    private String accountNumber;
+    private String ownerName;
+    private double balance;
 
-    public Account(String ownerName, double balance) {
+    public Account(String accountNumber, String ownerName, double balance) {
+        this.accountNumber = accountNumber;
         this.ownerName = ownerName;
         this.balance = balance;
     }
 
-    public void deposit(double amount) {
-        balance = balance + amount;
+    public String getAccountNumber() {
+        return accountNumber;
     }
 
-    public void withdraw(double amount) {
-        balance = balance - amount;
-        if (isOverdrawn()) {
-            balance = balance + amount;
-            System.out.println("Withdrawal rejected: insufficient balance.");
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public boolean deposit(double amount) {
+        if (amount <= 0) {
+            return false;
         }
+        balance += amount;
+        return true;
+    }
+
+   public boolean withdraw(double amount) {
+        if (amount <= 0 || amount > balance) {
+            return false;
+        }
+        balance -= amount;
+        return true;
     }
 
     public void printInfo() {
-        System.out.println(ownerName + " - balance: " + balance);
-    }
-    //penambahan method formatBalance()
-    public String formatBalance() {
-        return String. format("%,.2f", balance);
-    }
-    //penambahan method isOverdrawn()
-    public boolean isOverdrawn() {
-        return balance < 0;
-    }
-
-    //penambahan tugas mandiri
-    public void transferTo(Account target, double amount) {
-        double balanceBefore = this.balance;
-        this.withdraw(amount);
-        
-        //hanya menyetorkan ke target jika penarikan saldo pengirim berhasil
-        if (this.balance < balanceBefore) {
-            target.deposit(amount);
-        } else {
-            System.out.println("Transfer failed: transaction cancelled.");
-        }
+        System.out.println(accountNumber + " - " + ownerName + " - balance: " + balance);
     }
 }
