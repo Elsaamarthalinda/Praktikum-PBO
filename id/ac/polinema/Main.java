@@ -1,14 +1,21 @@
 package id.ac.polinema;
 public class Main {
     public static void main(String[] args) {
+        Customer customer1 = new Customer("Nadia", "0812-0000-0001");
+        Account acc1 = new Account("A001", customer1, 500000);
+        acc1.withdraw(150000);
+        
+        Customer customer2 = new Customer("Sari", "0812-000-0002");
+        Account acc2 = new Account("A002", customer2, 200000);
 
-        //membuat objek account dengan no rekening, nama pemilik, saldo awal, dan batas penarikan harian
-        Account limited = new Account("A005", "Fajar", 1000000, 200000);
+        Bank bank = new Bank(10);
+        bank.addAccount(acc1);
+        bank.addAccount(acc2);
+        bank.printAllAccounts();
 
-        // penarikan 300000 melebihi batas penarikan harian, sehingga gagal
-        System.out.println("Withdraw 300000 allowed? " + limited.withdraw(300000));
-        // penarikan 150000 masih dalam batas penarikan harian, sehingga berhasil
-        System.out.println("Withdraw 150000 allowed? " + limited.withdraw(150000) );
-        limited.printInfo();
+        Account found = bank.findAccount("A002");
+        if (found != null) {
+            found.printInfo();
+        }
     }
 }
