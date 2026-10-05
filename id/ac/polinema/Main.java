@@ -10,9 +10,15 @@ public class Main {
         CheckingAccount acc2 = new CheckingAccount("A002", customer2, 200000, 50000);
         acc2.withdraw(230000);
 
+        Customer customer3 = new Customer("PT Maju", "0812-0000-0003");
+        BusinessAccount acc3 = new BusinessAccount("A003", customer3, 1000000, 25000);
+
         Bank bank = new Bank(10);
         bank.addAccount(acc1);
         bank.addAccount(acc2);
+        bank.addAccount(acc3);
         bank.printAllAccounts();
+        acc3.printAccountType();
+
     }
 }
