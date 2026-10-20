@@ -1,5 +1,6 @@
 package id.ac.polinema;
 public class SavingsAccount extends Account {
+    private static final double MINIMUM_BALANCE = 50000;
     private double interestRate;
 
     public SavingsAccount(String accountNumber, Customer owner, double balance, double interestRate) {
@@ -11,7 +12,14 @@ public class SavingsAccount extends Account {
         return interestRate;
     }
 
-    public void printAccountType() {
+    @Override
+    protected boolean canWithdraw(double amount) {
+        return amount > 0 && (getBalance() - amount) >= MINIMUM_BALANCE;
+    }
+
+    @Override
+    public void printInfo() {
+        super.printInfo();
         System.out.println("Account type: Savings, interest rate: " + interestRate);
     }
 }

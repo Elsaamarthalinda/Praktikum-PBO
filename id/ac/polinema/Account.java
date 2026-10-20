@@ -31,10 +31,22 @@ public class Account {
     }
 
    public boolean withdraw(double amount) {
-        if (amount <= 0 || amount > balance) {
+        if (!canWithdraw(amount)) {
             return false;
         }
         balance -= amount;
+        return true;
+    }
+
+    protected boolean canWithdraw(double amount) {
+        return amount > 0 && amount <= balance;
+    }
+
+    public boolean deposit(double amount, String note) {
+        if (!deposit(amount)) {
+            return false;
+        }
+        System.out.println(accountNumber + " deposit note: " + note);
         return true;
     }
 
