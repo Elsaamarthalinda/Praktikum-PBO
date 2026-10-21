@@ -1,10 +1,12 @@
 package id.ac.polinema;
 public class Main {
     public static void main(String[] args) {
-        Customer customer1 = new Customer("Rian", "0812-0000-0003");
-        SavingsAccount savings = new SavingsAccount("A003", customer1, 100000, 0.02);
+        Customer customer = new Customer("Rian", "0812-0000-0003");
+        BusinessAccount business = new BusinessAccount("A003", customer, 2000000, 50000);
 
-        savings.deposit(50000, "Initial top-up");
-        savings.printInfo();
+        boolean result = business.withdraw(1500000);
+        System.out.println("Withdraw 1500000 allowed? " + result);
+
+        business.printInfo();
     }
 }
