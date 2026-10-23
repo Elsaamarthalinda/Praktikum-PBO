@@ -25,5 +25,9 @@ public class Main {
 
         bank.printAllAccounts();
         bank.printMonthlyFees();
+
+        System.out.println("Before interest: " + savings.getBalance());
+        savings.applyInterest();
+        System.out.println("After interest: " + savings.getBalance());
     }
 }

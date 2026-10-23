@@ -1,8 +1,14 @@
 package id.ac.polinema;
 
-public class SavingsAccount extends Account {
+public class SavingsAccount extends Account implements InterestBearing {
     private static final double MINIMUM_BALANCE = 50000;
     private double interestRate;
+
+    @Override
+    public void applyInterest() {
+        double interest = getBalance() * interestRate;
+        deposit(interest);
+    }
 
     public SavingsAccount(String accountNumber, Customer owner, double balance, double interestRate) {
         super(accountNumber, owner, balance);
