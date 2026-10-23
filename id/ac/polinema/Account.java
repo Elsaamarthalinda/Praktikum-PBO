@@ -1,8 +1,10 @@
 package id.ac.polinema;
-public class Account {
+public abstract class Account {
     private String accountNumber;
     private Customer owner;
     private double balance;
+    
+    public abstract double monthlyFee();
 
     public Account(String accountNumber, Customer owner, double balance) {
         this.accountNumber = accountNumber;

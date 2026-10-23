@@ -3,6 +3,12 @@ public class Bank {
     private Account[] accounts;
     private int count;
 
+    public void printMonthlyFees() {
+        for (int i = 0; i < count; i++) {
+            System.out.println(accounts[i].getAccountNumber() + " fee:" + accounts[i].monthlyFee());
+        }
+    }
+
     public Bank (int capacity) {
         accounts = new Account [capacity];
         count = 0;

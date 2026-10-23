@@ -1,4 +1,5 @@
 package id.ac.polinema;
+
 public class SavingsAccount extends Account {
     private static final double MINIMUM_BALANCE = 50000;
     private double interestRate;
@@ -6,6 +7,11 @@ public class SavingsAccount extends Account {
     public SavingsAccount(String accountNumber, Customer owner, double balance, double interestRate) {
         super(accountNumber, owner, balance);
         this.interestRate = interestRate;
+    }
+
+    @Override
+    public double monthlyFee() {
+        return 0;
     }
 
     public double getInterestRate() {
