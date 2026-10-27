@@ -1,17 +1,17 @@
 package id.ac.polinema;
 
-public class CheckingAccount extends Account {
+public class CheckingAccount extends Account implements Auditable {
     private double overdraftLimit;
-    private static final double MONTHLY_FEE = 15000; // Perbaikan: MONTHLY_FEE (bukan MOUNTHLY_FEE)
-
-    @Override
-    public double monthlyFee() {
-        return MONTHLY_FEE;
-    }
+    private static final double MONTHLY_FEE = 15000;
 
     public CheckingAccount(String accountNumber, Customer owner, double balance, double overdraftLimit) {
         super(accountNumber, owner, balance);
         this.overdraftLimit = overdraftLimit;
+    }
+
+    @Override
+    public double monthlyFee() {
+        return MONTHLY_FEE;
     }
 
     public double getOverdraftLimit() {
@@ -27,5 +27,11 @@ public class CheckingAccount extends Account {
     public void printInfo() {
         super.printInfo();
         System.out.println("Account type: Checking, overdraft limit: " + overdraftLimit);
+    }
+
+    // Implementasi method auditLog() dari interface Auditable
+    @Override
+    public String auditLog() {
+        return "Audit Log [Account Number: " + getAccountNumber() + ", Balance: " + getBalance() + "]";
     }
 }

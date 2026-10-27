@@ -29,5 +29,9 @@ public class Main {
         System.out.println("Before interest: " + savings.getBalance());
         savings.applyInterest();
         System.out.println("After interest: " + savings.getBalance());
+
+        // Pembuktian Tugas Mandiri 1: Pemanggilan auditLog()
+        System.out.println(acc2.auditLog());
+        System.out.println(checking.auditLog());
     }
 }

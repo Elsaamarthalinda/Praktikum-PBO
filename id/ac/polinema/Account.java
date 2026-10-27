@@ -1,9 +1,12 @@
 package id.ac.polinema;
+// Dibuat abstract agar kelas ini hanya menjadi template dan
+// tidak bisa dibuat objeknya secara langsung
 public abstract class Account {
     private String accountNumber;
     private Customer owner;
     private double balance;
     
+// Method abstract: Wajib di-override oleh kelas turunan untuk menghitung biaya bulanan masing-masing
     public abstract double monthlyFee();
 
     public Account(String accountNumber, Customer owner, double balance) {
@@ -12,26 +15,28 @@ public abstract class Account {
         this.balance = balance;
     }
 
-    public String getAccountNumber() {
+    public String getAccountNumber() {  //mengambil no rekening
         return accountNumber;
     }
 
-    public Customer getOwner() {
+    public Customer getOwner() { //ambil data pemilik rekening
         return owner;
     }
 
-    public double getBalance() {
+    public double getBalance() { //ambil saldo saat ini
         return balance;
     }
 
-    public boolean deposit(double amount) { // jika uang jika kurang dari sama dengan 0 maka return false
+    //Menambah saldo jika nominal setoran lebih dari 0
+    public boolean deposit(double amount) { 
         if (amount <= 0) {
-            return false;
+            return false; // jika uang jika kurang dari sama dengan 0 maka return false
         }
         balance += amount;
         return true;
     }
 
+    //Memproses penarikan saldo jika memenuhi syarat method canWithdraw()
    public boolean withdraw(double amount) {
         if (!canWithdraw(amount)) {
             return false;
@@ -40,6 +45,7 @@ public abstract class Account {
         return true;
     }
 
+    //Mengecek apakah saldo mencukupi untuk ditarik
     protected boolean canWithdraw(double amount) {
         return amount > 0 && amount <= balance;
     }
