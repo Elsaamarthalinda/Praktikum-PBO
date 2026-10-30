@@ -37,12 +37,13 @@ public abstract class Account {
     }
 
     //Memproses penarikan saldo jika memenuhi syarat method canWithdraw()
-   public boolean withdraw(double amount) {
+    //jb 10
+   public void withdraw(double amount) throws InsufficientBalanceException {
         if (!canWithdraw(amount)) {
-            return false;
+            throw new InsufficientBalanceException(
+                accountNumber + ": insufficient balance for  withdrawal of " + amount);
         }
         balance -= amount;
-        return true;
     }
 
     //Mengecek apakah saldo mencukupi untuk ditarik
