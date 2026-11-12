@@ -41,7 +41,7 @@ public abstract class Account {
    public void withdraw(double amount) throws InsufficientBalanceException {
         if (!canWithdraw(amount)) {
             throw new InsufficientBalanceException(
-                accountNumber + ": insufficient balance for  withdrawal of " + amount);
+                accountNumber + ": insufficient balance for a withdrawal of " + amount);
         }
         balance -= amount;
     }

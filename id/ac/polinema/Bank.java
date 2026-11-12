@@ -14,6 +14,15 @@ public class Bank {
         }
     }
 
+    // Tugas mandiri 1: cetak auditLog() hanya untuk rekening yang Auditable
+    public void printAuditLog() {
+        for (int i = 0; i < count; i++) {
+            if (accounts[i] instanceof Auditable auditable) {
+                System.out.println(auditable.auditLog());
+            }
+        }
+    }
+
     public void printMonthlyFees() {
         for (int i = 0; i < count; i++) {
             System.out.println(accounts[i].getAccountNumber() + " fee:" + accounts[i].monthlyFee());
@@ -34,13 +43,14 @@ public class Bank {
         return true;
     }
 
-    public Account findAccount(String accountNumber) {
+    // mengembalikan null ketika rekening tidak ditemukan
+    public Account findAccount(String accountNumber) throws AccountNotFoundException {
         for (int i = 0; i < count; i++) {
             if (accounts[i].getAccountNumber().equals(accountNumber)) {
                 return accounts[i];
             }
         }
-        return null;
+        throw new AccountNotFoundException("Account " + accountNumber + " not found");
     }
 
     public Account[] findAccountsByOwnerName(String name) {
