@@ -25,30 +25,10 @@ public class Main {
         }
  
         //penambahan pemanggilan jb 10
-        Bank bank = new Bank(10);
+        Bank bank = new Bank(); //jb 11 penghapusan kapasitas
         bank.addAccount(acc1);
         bank.addAccount(acc2);
         bank.addAccount(savings);
-        bank.processMonthEnd();
- 
-        // Tugas mandiri 1: laporan audit
-        bank.printAuditLog();
- 
-        // Tugas mandiri 2: findAccount() melempar exception
-        try {
-            Account found = bank.findAccount("A002");
-            System.out.println("Found: " + found.getAccountNumber());
-        } catch (AccountNotFoundException e) {
-            System.out.println("Search failed: " + e.getMessage());
-        }
- 
-        try {
-            Account found = bank.findAccount("A999");
-            System.out.println("Found: " + found.getAccountNumber());
-        } catch (AccountNotFoundException e) {
-            System.out.println("Search failed: " + e.getMessage());
-        }
- 
-        System.out.println("Program finished normally");
+        bank.processMonthEnd(); 
     }
 }
